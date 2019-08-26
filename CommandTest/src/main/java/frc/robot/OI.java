@@ -17,17 +17,22 @@ import frc.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  // creating joysticks
+  // creating joysticks and buttons
   public static Joystick m_rightStick = new Joystick(RobotMap.rightStick);
   public static Joystick m_leftStick = new Joystick(RobotMap.leftStick);
+  public static Button lTrigger, rTrigger, lBigButton, rBigButton, lTopLeft, lTopRight, rTopLeft, rTopRight, lBottom;
 
   public static void init() {
     // assigning buttons to names
-    Button lTrigger = new JoystickButton(m_leftStick, 1), rTrigger = new JoystickButton(m_rightStick, 1),
-        lBigButton = new JoystickButton(m_leftStick, 2), rBigButton = new JoystickButton(m_rightStick, 2),
-        lTopLeft = new JoystickButton(m_leftStick, 3), lTopRight = new JoystickButton(m_leftStick, 4),
-        rTopLeft = new JoystickButton(m_rightStick, 3), rTopRight = new JoystickButton(m_rightStick, 4),
-        lBottom = new JoystickButton(m_leftStick, 5);
+    lTrigger = new JoystickButton(m_leftStick, 1);
+    rTrigger = new JoystickButton(m_rightStick, 1);
+    lBigButton = new JoystickButton(m_leftStick, 2);
+    rBigButton = new JoystickButton(m_rightStick, 2);
+    lTopLeft = new JoystickButton(m_leftStick, 3);
+    lTopRight = new JoystickButton(m_leftStick, 4);
+    rTopLeft = new JoystickButton(m_rightStick, 3);
+    rTopRight = new JoystickButton(m_rightStick, 4);
+    lBottom = new JoystickButton(m_leftStick, 5);
 
     // Controlling the lift
     rTrigger.whileHeld(new LiftCommand(LiftCommand.Mode.UP));
