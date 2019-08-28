@@ -8,14 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+import frc.robot.Robot;
 
 public class POV extends Command {
-  private int ldir, rdir;
 
   public POV() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.pneumatics);
   }
 
   // Called just before this Command runs the first time
@@ -26,10 +26,10 @@ public class POV extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    ldir = OI.m_leftStick.getPOV(0);
-    rdir = OI.m_rightStick.getPOV(0);
+    int ldir = Robot.oi.getLeftPOV();
+    int rdir = Robot.oi.getRightPOV();
 
-    switch (ldir) {
+    switch (rdir) {
     case 0:
       new PneumaticsCommand(PneumaticsCommand.Mode.FUP);
       break;
@@ -38,7 +38,7 @@ public class POV extends Command {
       break;
     }
 
-    switch (rdir) {
+    switch (ldir) {
     case 0:
       new PneumaticsCommand(PneumaticsCommand.Mode.BUP);
       break;
@@ -46,7 +46,6 @@ public class POV extends Command {
       new PneumaticsCommand(PneumaticsCommand.Mode.BDOWN);
       break;
     }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
