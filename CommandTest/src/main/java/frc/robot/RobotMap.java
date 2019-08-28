@@ -31,8 +31,8 @@ public class RobotMap {
   public static final int liftMotor = 4;
 
   // solenoid ports
-  public static final int hpgrasp = 0;
-  public static final int hprelease = 1;
+  public static final int hpUp = 0;
+  public static final int hpDown = 1;
   public static final int hpreach = 2;
   public static final int hpretract = 3;
   public static final int frontLift = 4;
@@ -44,4 +44,7 @@ public class RobotMap {
   public static final int rightStick = 0;
   public static final int leftStick = 1;
   public static final double joy_deadzone = 0.05;
+
+  // what state they should be in when the robot starts (it's here so it can be easily changed if needed to be reversed)
+  public static final boolean defaultPneumaticsState = true;
 }

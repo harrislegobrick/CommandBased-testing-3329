@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.autoncommands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +22,7 @@ public class OI {
   public static Joystick m_rightStick = new Joystick(RobotMap.rightStick);
   public static Joystick m_leftStick = new Joystick(RobotMap.leftStick);
   public static Button lTrigger, rTrigger, lBigButton, rBigButton, lTopLeft, lTopRight, rTopLeft, rTopRight, lBottom;
+  public static int povHat;
 
   public static void init() {
     // assigning buttons to names
@@ -37,25 +39,24 @@ public class OI {
     // Controlling the lift
     rTrigger.whileHeld(new LiftCommand(LiftCommand.Mode.UP));
     lTrigger.whileHeld(new LiftCommand(LiftCommand.Mode.DOWN));
+
     // Controlling the intake
     rBigButton.whileHeld(new IntakeCommand(IntakeCommand.Mode.IN));
     lBigButton.whileHeld(new IntakeCommand(IntakeCommand.Mode.OUT));
+
     // limelight
     lBottom.whileHeld(new LimelightTrackToTarget());
-  }
 
-  public double getLeftJoyX() {
-    double raw = m_leftStick.getX();
-    return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
+    // pnewmatikz (plus code in the POV command)
+    lTopLeft.whenPressed(new PneumaticsCommand(PneumaticsCommand.Mode.IN));
+    rTopRight.whenPressed(new PneumaticsCommand(PneumaticsCommand.Mode.OUT));
+    lTopRight.whenPressed(new PneumaticsCommand(PneumaticsCommand.Mode.DOWN));
+    rTopLeft.whenPressed(new PneumaticsCommand(PneumaticsCommand.Mode.UP));
+
   }
 
   public double getLeftJoyY() {
     double raw = m_leftStick.getY();
-    return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
-  }
-
-  public double getRightJoyX() {
-    double raw = m_rightStick.getX();
     return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
   }
 

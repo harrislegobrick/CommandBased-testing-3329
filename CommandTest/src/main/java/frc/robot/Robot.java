@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.TestAuton;
-import frc.robot.commands.TestAutonExpert;
 import frc.robot.subsystems.*;
+import frc.robot.commands.autoncommands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +27,9 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Drivetrain drivetrain;
   public static Lift lift;
-  public static CargoIntake CargoIntake;
+  public static CargoIntake cargoIntake;
   public static Limelight limelight;
+  public static Pneumatics pneumatics; 
 
   Command autonomousCommand;
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -41,10 +41,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     lift = new Lift();
-    CargoIntake = new CargoIntake();
+    cargoIntake = new CargoIntake();
     oi = new OI();
     drivetrain = new Drivetrain();
     limelight = new Limelight();
+    pneumatics = new Pneumatics();
 
     OI.init();
 
