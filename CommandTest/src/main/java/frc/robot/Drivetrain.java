@@ -31,7 +31,7 @@ public class Drivetrain extends Subsystem {
 
   public void setRaw(double leftvalue, double rightvalue) {
     leftMotor.set(leftvalue);
-    rightMotor.set(rightvalue);
+    rightMotor.set(-rightvalue);
   }
 
   @Override
