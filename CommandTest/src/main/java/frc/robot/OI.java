@@ -65,4 +65,14 @@ public class OI {
     return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
   }
 
+  public int getLeftPOV(){
+    int pid = m_leftStick.getPOV(0);
+    return pid;
+  }
+
+  public int getRightPOV(){
+    int pid = m_rightStick.getPOV(0);
+    return pid;
+  }
+
 }
