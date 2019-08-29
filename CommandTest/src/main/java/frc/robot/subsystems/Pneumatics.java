@@ -20,8 +20,8 @@ public class Pneumatics extends Subsystem {
 
   public Pneumatics() {
     // assignment
-    hpreach = new Solenoid(RobotMap.hpreach);
-    hpretract = new Solenoid(RobotMap.hpretract);
+    hpreach = new Solenoid(RobotMap.hpReach);
+    hpretract = new Solenoid(RobotMap.hpRetract);
     hpUp = new Solenoid(RobotMap.hpUp);
     hpDown = new Solenoid(RobotMap.hpDown);
     frontLift = new Solenoid(RobotMap.frontLift);
