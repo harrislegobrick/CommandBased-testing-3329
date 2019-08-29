@@ -33,8 +33,8 @@ public class RobotMap {
   // solenoid ports
   public static final int hpUp = 0;
   public static final int hpDown = 1;
-  public static final int hpretract = 2;
-  public static final int hpreach = 3;
+  public static final int hpRetract = 2;
+  public static final int hpReach = 3;
   public static final int frontLift = 4;
   public static final int frontDrop = 5;
   public static final int rearLift = 6;
