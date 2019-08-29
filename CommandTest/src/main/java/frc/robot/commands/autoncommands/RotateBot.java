@@ -22,8 +22,6 @@ public class RotateBot extends Command {
   private double minspeed = 0.55;
 
   public RotateBot(double degrees, Direction direction) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.drivetrain);
     this.degrees = degrees;
     this.direction = direction;
@@ -41,12 +39,12 @@ public class RotateBot extends Command {
     switch (direction) {
     case RIGHT:
       newspeed = Math.max(Math.abs((speed * (degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(newspeed, -newspeed);
+      Robot.drivetrain.setRaw(newspeed, newspeed);
       break;
 
     case LEFT:
       newspeed = Math.max(Math.abs((speed * (-degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(-newspeed, newspeed);
+      Robot.drivetrain.setRaw(newspeed, newspeed);
     }
   }
 
