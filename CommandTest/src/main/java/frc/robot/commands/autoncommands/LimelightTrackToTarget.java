@@ -51,7 +51,7 @@ public class LimelightTrackToTarget extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.setRaw(0.0, 0.0);
+    Robot.drivetrain.setRaw(0, 0);
     Limelight.table.getEntry("ledMode").setNumber(1);
     Limelight.table.getEntry("camMode").setNumber(1);
   }
