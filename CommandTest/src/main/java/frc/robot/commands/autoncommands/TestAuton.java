@@ -15,7 +15,7 @@ public class TestAuton extends CommandGroup {
    */
   public TestAuton() {
     addSequential(new DriveStraight(3, 0.6));
-    addSequential(new CancelMovement());
+    addSequential(new CancelMovement()); 
     addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
     // Add Commands here:
     // e.g. addSequential(new Command1());
