@@ -21,10 +21,12 @@ public class Drivetrain extends Subsystem {
   // here. Call these from Commands.
   private Talon leftMotor, rightMotor;
   public ADXRS450_Gyro gyro;
+  public BuiltInAccelerometer accel;
 
   public Drivetrain() {
     leftMotor = new Talon(RobotMap.leftMotor);
     rightMotor = new Talon(RobotMap.rightMotor);
+    accel = new BuiltInAccelerometer();
     gyro = new ADXRS450_Gyro();
     gyro.calibrate();
   }
