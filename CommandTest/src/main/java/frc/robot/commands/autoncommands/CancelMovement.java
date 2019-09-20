@@ -27,10 +27,10 @@ public class CancelMovement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.drivetrain.accel.getX() > exactness) {
-      Robot.drivetrain.setRaw(speed, speed);
-    } else {
+    if (Robot.drivetrain.accel.getY() > 0) {
       Robot.drivetrain.setRaw(-speed, -speed);
+    } else {
+      Robot.drivetrain.setRaw(speed, speed);
     }
   }
 
