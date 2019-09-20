@@ -39,12 +39,12 @@ public class RotateBot extends Command {
     switch (direction) {
     case RIGHT:
       newspeed = Math.max(Math.abs((speed * (degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(newspeed, newspeed);
+      Robot.drivetrain.setRaw(newspeed, -newspeed);
       break;
 
     case LEFT:
       newspeed = Math.max(Math.abs((speed * (-degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(newspeed, newspeed);
+      Robot.drivetrain.setRaw(-newspeed, newspeed);
     }
   }
 
