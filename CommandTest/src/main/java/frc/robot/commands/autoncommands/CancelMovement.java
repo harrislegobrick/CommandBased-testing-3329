@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class CancelMovement extends Command {
 
   private double exactness = 0.1;
-  private double speed = 0.51;
+  private double speed = 0.3;
 
   public CancelMovement() {
     requires(Robot.drivetrain);
