@@ -18,8 +18,8 @@ public class RotateBot extends Command {
 
   private Direction direction;
   private double degrees, newspeed;
-  private double speed = 1.0;
-  private double minspeed = 0.55;
+  private double speed = 0.6;
+  private double minspeed = 0.3;
 
   public RotateBot(double degrees, Direction direction) {
     requires(Robot.drivetrain);
@@ -51,18 +51,7 @@ public class RotateBot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    boolean finished = false;
-    switch (direction) {
-    case RIGHT:
-      if (Robot.drivetrain.gyro.getAngle() <= degrees * 0.9) {
-        finished = true;
-      }
-    case LEFT:
-      if (Robot.drivetrain.gyro.getAngle() >= -degrees * 0.9) {
-        finished = true;
-      }
-    }
-    return finished;
+    return Math.abs(Robot.drivetrain.gyro.getAngle()) >= degrees * 0.7;
   }
 
   // Called once after isFinished returns true
