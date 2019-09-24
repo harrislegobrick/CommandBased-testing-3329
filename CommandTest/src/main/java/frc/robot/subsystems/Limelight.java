@@ -18,14 +18,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Limelight extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static NetworkTable table;
+  private static NetworkTable table;
   private NetworkTableEntry tx, ty, ta, tv;
 
   public Limelight() {
     table = NetworkTableInstance.getDefault().getTable("limelight");
 
-    table.getEntry("ledMode").setNumber(1);
-    table.getEntry("camMode").setNumber(1);
+    setDriving();
   }
 
   public double getLimelightX() {
@@ -36,6 +35,16 @@ public class Limelight extends Subsystem {
   public double getLimelightY() {
     ty = table.getEntry("ty");
     return ty.getDouble(0.0);
+  }
+
+  public void setTracking() {
+    table.getEntry("ledMode").setNumber(3);
+    table.getEntry("camMode").setNumber(0);
+  }
+
+  public void setDriving() {
+    table.getEntry("ledMode").setNumber(1);
+    table.getEntry("camMode").setNumber(1);
   }
 
   public double getLimelightArea() {

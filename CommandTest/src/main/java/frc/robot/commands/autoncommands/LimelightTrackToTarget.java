@@ -9,7 +9,6 @@ package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Limelight;
 
 public class LimelightTrackToTarget extends Command {
 
@@ -23,7 +22,7 @@ public class LimelightTrackToTarget extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    Robot.limelight.setTracking();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -33,8 +32,6 @@ public class LimelightTrackToTarget extends Command {
     llspeedL = llspeedR = 0.8;
     double errorValue = Robot.limelight.getLimelightX() / 30;
 
-    Limelight.table.getEntry("ledMode").setNumber(3);
-    Limelight.table.getEntry("camMode").setNumber(0);
     if (Robot.limelight.getLimelightAvalible() && Robot.limelight.getLimelightY() < 21.5) {
       llspeedL *= errorValue + llspeedL;
       llspeedR *= -errorValue + llspeedR;
@@ -52,8 +49,7 @@ public class LimelightTrackToTarget extends Command {
   @Override
   protected void end() {
     Robot.drivetrain.setRaw(0, 0);
-    Limelight.table.getEntry("ledMode").setNumber(1);
-    Limelight.table.getEntry("camMode").setNumber(1);
+    Robot.limelight.setDriving();
   }
 
   // Called when another command which requires one or more of the same
