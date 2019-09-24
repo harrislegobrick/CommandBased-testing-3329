@@ -25,7 +25,7 @@ public class TestAutonExpert extends CommandGroup {
     Timer.delay(2);
     addSequential(new DriveStraight(0.5, 0.6));
     Timer.delay(3);
-    addSequential(new RotateBot(90, RotateBot.Direction.RIGHT));
+    addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
 
     // Add Commands here:
     // e.g. addSequential(new Command1());
