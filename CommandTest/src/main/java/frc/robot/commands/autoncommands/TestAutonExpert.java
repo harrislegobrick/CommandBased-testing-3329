@@ -18,13 +18,13 @@ public class TestAutonExpert extends CommandGroup {
     addSequential(new DriveStraight(1, 0.7));
     Timer.delay(2);
     addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
-    Timer.delay(1);
-    addSequential(new DriveStraight(2, 0.5));
+    Timer.delay(2);
+    addSequential(new DriveStraight(1.5, 0.4));
     Timer.delay(1);
     addSequential(new RotateBot(180, RotateBot.Direction.RIGHT));
-    Timer.delay(1);
-    addSequential(new DriveStraight(3, 0.6));
-    Timer.delay(1);
+    Timer.delay(2);
+    addSequential(new DriveStraight(0.5, 0.6));
+    Timer.delay(3);
     addSequential(new RotateBot(90, RotateBot.Direction.RIGHT));
 
     // Add Commands here:
