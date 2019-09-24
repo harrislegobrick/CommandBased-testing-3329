@@ -8,14 +8,16 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.Timer;
 
 public class TestAuton extends CommandGroup {
   /**
    * Add your docs here.
    */
   public TestAuton() {
-    addSequential(new DriveStraight(3, 0.6));
-    addSequential(new CancelMovement()); 
+    addSequential(new DriveStraight(2, 0.5));
+    Timer.delay(1);
+    //addSequential(new CancelMovement()); 
     addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
     // Add Commands here:
     // e.g. addSequential(new Command1());
