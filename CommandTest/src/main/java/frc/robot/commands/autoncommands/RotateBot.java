@@ -20,6 +20,7 @@ public class RotateBot extends Command {
   private double degrees, newspeed;
   private double speed = 0.6;
   private double minspeed = 0.3;
+  private double exactness = 0.85;
 
   public RotateBot(double degrees, Direction direction) {
     requires(Robot.drivetrain);
@@ -51,7 +52,7 @@ public class RotateBot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.drivetrain.gyro.getAngle()) >= degrees * 0.7;
+    return Math.abs(Robot.drivetrain.gyro.getAngle()) >= degrees * exactness;
   }
 
   // Called once after isFinished returns true
