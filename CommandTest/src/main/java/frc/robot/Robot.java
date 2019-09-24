@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
 
     OI.init();
 
-    // chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    chooser.setDefaultOption("Default Auto", new TestAuton());
     chooser.addOption("Basic Test", new TestAuton());
     chooser.addOption("Advanced", new TestAutonExpert());
     SmartDashboard.putData("Auto mode", chooser);
@@ -66,6 +66,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("accel Y", Robot.drivetrain.accel.getY());
+    SmartDashboard.putNumber("accel X", Robot.drivetrain.accel.getX());
+    SmartDashboard.putNumber("accel Z", Robot.drivetrain.accel.getZ());
+    SmartDashboard.putNumber("gyro", Robot.drivetrain.gyro.getAngle());
   }
 
   /**
