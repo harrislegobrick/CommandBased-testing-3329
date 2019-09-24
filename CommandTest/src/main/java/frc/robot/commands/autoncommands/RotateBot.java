@@ -19,7 +19,7 @@ public class RotateBot extends Command {
   private Direction direction;
   private double degrees, newspeed;
   private double speed = 0.6;
-  private double minspeed = 0.3;
+  private double minspeed = 0.35;
   private double exactness = 0.95;
 
   public RotateBot(double degrees, Direction direction) {
