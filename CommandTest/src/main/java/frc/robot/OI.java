@@ -51,6 +51,7 @@ public class OI {
 
     // Limelight
     lBottom.whileHeld(new LimelightTrackToTarget());
+    lBottom.whenReleased(new TankDrive());
 
     // Pnewmatikz for hatch
     lTopLeft.whenPressed(new PneumaticsCommand(PneumaticsCommand.Mode.IN));
