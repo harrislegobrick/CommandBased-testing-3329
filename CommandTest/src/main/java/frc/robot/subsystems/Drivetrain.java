@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.TankDrive;
@@ -20,12 +21,13 @@ import frc.robot.commands.TankDrive;
 public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private Talon leftMotor, rightMotor;
+  private Talon rightMotor;
+  private Spark leftMotor;
   public ADXRS450_Gyro gyro;
   public BuiltInAccelerometer accel;
 
   public Drivetrain() {
-    leftMotor = new Talon(RobotMap.leftMotor);
+    leftMotor = new Spark(RobotMap.leftMotor);
     rightMotor = new Talon(RobotMap.rightMotor);
     accel = new BuiltInAccelerometer();
     gyro = new ADXRS450_Gyro();
