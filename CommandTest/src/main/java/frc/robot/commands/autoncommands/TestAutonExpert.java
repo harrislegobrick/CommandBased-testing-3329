@@ -8,7 +8,7 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class TestAutonExpert extends CommandGroup {
   /**
@@ -16,17 +16,17 @@ public class TestAutonExpert extends CommandGroup {
    */
   public TestAutonExpert() {
     addSequential(new DriveStraight(1, 0.7));
-    Timer.delay(2);
+    addSequential(new WaitCommand(2));
     addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
-    Timer.delay(2);
+    addSequential(new WaitCommand(2));
     addSequential(new DriveStraight(1.5, 0.4));
-    Timer.delay(1);
+    addSequential(new WaitCommand(1));
     addSequential(new RotateBot(180, RotateBot.Direction.RIGHT));
-    Timer.delay(2);
+    addSequential(new WaitCommand(2));
     addSequential(new DriveStraight(0.5, 0.6));
-    Timer.delay(3);
+    addSequential(new WaitCommand(3));
     addSequential(new RotateBot(90, RotateBot.Direction.LEFT));
-    Timer.delay(1);
+    addSequential(new WaitCommand(1));
     addSequential(new DriveStraight(0.7, 0.6));
 
     // Add Commands here:
