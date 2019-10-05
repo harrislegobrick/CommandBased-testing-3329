@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   public static Lift lift;
   public static CargoIntake cargoIntake;
   public static Limelight limelight;
-  public static Pneumatics pneumatics; 
+  public static Pneumatics pneumatics;
 
   Command autonomousCommand;
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -70,6 +70,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("accel X", Robot.drivetrain.accel.getX());
     SmartDashboard.putNumber("accel Z", Robot.drivetrain.accel.getZ());
     SmartDashboard.putNumber("gyro", Robot.drivetrain.gyro.getAngle());
+
+    // remove for limelight testing
+    // SmartDashboard.putNumber("limelight skew", Robot.limelight.getSkew());
+    // Robot.limelight.foo();
   }
 
   /**
