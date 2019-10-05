@@ -30,9 +30,9 @@ public class LimelightTrackToTarget extends Command {
   protected void execute() {
     double llspeedL, llspeedR;
     llspeedL = llspeedR = 0.8;
-    double errorValue = Robot.limelight.getLimelightX() / 30;
+    double errorValue = Robot.limelight.getX() / 30;
 
-    if (Robot.limelight.getLimelightAvalible() && Robot.limelight.getLimelightY() < 21.5) {
+    if (Robot.limelight.getAvalibility() && Robot.limelight.getY() < 21.5) {
       llspeedL *= errorValue + llspeedL;
       llspeedR *= -errorValue + llspeedR;
       Robot.drivetrain.setRaw(llspeedL, llspeedR);
