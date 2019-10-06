@@ -49,12 +49,10 @@ public class Limelight extends Subsystem {
     return table.getEntry("ta").getDouble(0.0);
   }
 
-  public void foo() {
-    double[] bar = new double[6];
-    bar = table.getEntry("camtran").getDoubleArray(bar);
-    for (int i = 0; i < bar.length; i++) {
-      System.out.println(bar[i]);
-    }
+  public double[] pos() {
+    double[] pos = new double[6];
+    pos = table.getEntry("camtran").getDoubleArray(pos);
+    return pos;
   }
 
   public boolean getAvalibility() {
