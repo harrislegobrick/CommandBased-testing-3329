@@ -66,14 +66,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("accel Y", Robot.drivetrain.accel.getY());
-    SmartDashboard.putNumber("accel X", Robot.drivetrain.accel.getX());
-    SmartDashboard.putNumber("accel Z", Robot.drivetrain.accel.getZ());
-    SmartDashboard.putNumber("gyro", Robot.drivetrain.gyro.getAngle());
+    SmartDashboard.putNumber("accel Y", Robot.drivetrain.getY());
+    SmartDashboard.putNumber("accel X", Robot.drivetrain.getX());
+    SmartDashboard.putNumber("accel Z", Robot.drivetrain.getZ());
+    SmartDashboard.putNumber("gyro", Robot.drivetrain.getGyro());
 
     // remove for limelight testing
     // SmartDashboard.putNumber("limelight skew", Robot.limelight.getSkew());
-    // Robot.limelight.foo();
+    // SmartDashboard.putNumberArray("limelight 3D", Robot.limelight.pos());
   }
 
   /**
