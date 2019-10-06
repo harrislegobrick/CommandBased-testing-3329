@@ -49,6 +49,11 @@ public class Drivetrain extends Subsystem {
     rightMotor.set(-rightvalue);
   }
 
+  public void stop(){
+    leftMotor.set(0.0);
+    rightMotor.set(0.0);
+  }
+
   public double getX() {
     return accel.getX();
   }
