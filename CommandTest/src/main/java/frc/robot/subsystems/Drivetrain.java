@@ -23,20 +23,42 @@ public class Drivetrain extends Subsystem {
   // here. Call these from Commands.
   private Talon rightMotor;
   private Spark leftMotor;
-  public ADXRS450_Gyro gyro;
-  public BuiltInAccelerometer accel;
+  private ADXRS450_Gyro gyro;
+  private BuiltInAccelerometer accel;
 
   public Drivetrain() {
     leftMotor = new Spark(RobotMap.leftMotor);
     rightMotor = new Talon(RobotMap.rightMotor);
+
     accel = new BuiltInAccelerometer();
     gyro = new ADXRS450_Gyro();
+
     gyro.calibrate();
+  }
+
+  public void resetGyro() {
+    gyro.reset();
+  }
+
+  public double getGyro() {
+    return gyro.getAngle();
   }
 
   public void setRaw(double leftvalue, double rightvalue) {
     leftMotor.set(leftvalue);
     rightMotor.set(-rightvalue);
+  }
+
+  public double getX() {
+    return accel.getX();
+  }
+
+  public double getY() {
+    return accel.getY();
+  }
+
+  public double getZ() {
+    return accel.getZ();
   }
 
   @Override
