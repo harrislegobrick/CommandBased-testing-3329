@@ -33,13 +33,13 @@ public class DriveStraight extends TimedCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.gyro.reset();
+    Robot.drivetrain.resetGyro();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    error = Robot.drivetrain.gyro.getAngle();
+    error = Robot.drivetrain.getGyro();
 
     if (error != previousError) {
       deltaError = error - previousError;
