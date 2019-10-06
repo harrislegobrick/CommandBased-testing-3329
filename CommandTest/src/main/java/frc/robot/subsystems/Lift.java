@@ -15,19 +15,10 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Lift extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
   private Talon lift;
 
   public Lift() {
     lift = new Talon(RobotMap.liftMotor);
-  }
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-
   }
 
   public void up() {
@@ -39,7 +30,10 @@ public class Lift extends Subsystem {
   }
 
   public void stop() {
-    lift.set(0);
+    lift.set(0.0);
   }
 
+  @Override
+  public void initDefaultCommand() {
+  }
 }

@@ -15,18 +15,14 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class CargoIntake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  private Spark grabbers = new Spark(RobotMap.grabberMotor);
+  private Spark grabbers;
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  public CargoIntake() {
+    grabbers = new Spark(RobotMap.grabberMotor);
   }
 
   public void shoot() {
-    grabbers.set(1);
+    grabbers.set(1.0);
   }
 
   public void grab() {
@@ -34,6 +30,10 @@ public class CargoIntake extends Subsystem {
   }
 
   public void stop() {
-    grabbers.set(0);
+    grabbers.set(0.0);
+  }
+
+  @Override
+  public void initDefaultCommand() {
   }
 }
