@@ -31,7 +31,7 @@ public class RotateBot extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.gyro.reset();
+    Robot.drivetrain.resetGyro();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -39,12 +39,12 @@ public class RotateBot extends Command {
   protected void execute() {
     switch (direction) {
     case RIGHT:
-      newspeed = Math.max(Math.abs((speed * (degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
+      newspeed = Math.max(Math.abs((speed * (degrees - Robot.drivetrain.getGyro()) / degrees)), minspeed);
       Robot.drivetrain.setRaw(newspeed, -newspeed);
       break;
 
     case LEFT:
-      newspeed = Math.max(Math.abs((speed * (-degrees - Robot.drivetrain.gyro.getAngle()) / degrees)), minspeed);
+      newspeed = Math.max(Math.abs((speed * (-degrees - Robot.drivetrain.getGyro()) / degrees)), minspeed);
       Robot.drivetrain.setRaw(-newspeed, newspeed);
       break;
     }
@@ -53,7 +53,7 @@ public class RotateBot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.drivetrain.gyro.getAngle()) >= degrees * exactness;
+    return Math.abs(Robot.drivetrain.getGyro()) >= degrees * exactness;
   }
 
   // Called once after isFinished returns true
