@@ -27,7 +27,7 @@ public class CancelMovement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.drivetrain.accel.getY() < 0) {
+    if (Robot.drivetrain.getY() < 0) {
       Robot.drivetrain.setRaw(-speed, -speed);
     } else {
       Robot.drivetrain.setRaw(speed, speed);
@@ -37,8 +37,8 @@ public class CancelMovement extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.drivetrain.accel.getX()) < exactness && Math.abs(Robot.drivetrain.accel.getY()) < exactness
-        && Math.abs(Robot.drivetrain.accel.getZ()) < exactness;
+    return Math.abs(Robot.drivetrain.getX()) < exactness && Math.abs(Robot.drivetrain.getY()) < exactness
+        && Math.abs(Robot.drivetrain.getZ()) < exactness;
   }
 
   // Called once after isFinished returns true
