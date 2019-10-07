@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
 
     // remove for limelight testing
     // SmartDashboard.putNumber("limelight skew", Robot.limelight.getSkew());
-    // SmartDashboard.putNumberArray("limelight 3D", Robot.limelight.pos());
+    // SmartDashboard.putNumberArray("limelight 3D", Robot.limelight.getPos());
   }
 
   /**
