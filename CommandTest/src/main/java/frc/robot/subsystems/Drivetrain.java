@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 import frc.robot.RobotMap;
 import frc.robot.commands.TankDrive;
 
@@ -30,7 +31,7 @@ public class Drivetrain extends Subsystem {
     leftMotor = new Spark(RobotMap.leftMotor);
     rightMotor = new Talon(RobotMap.rightMotor);
 
-    accel = new BuiltInAccelerometer();
+    accel = new BuiltInAccelerometer(Range.k16G);
     gyro = new ADXRS450_Gyro();
 
     gyro.calibrate();
