@@ -7,7 +7,8 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -16,61 +17,54 @@ import frc.robot.RobotMap;
  */
 public class Pneumatics extends Subsystem {
 
-  private Solenoid hpreach, hpretract, hpUp, hpDown, frontLift, frontDrop, rearLift, rearDrop;
+  private DoubleSolenoid hpReach, hpVert, front, rear;
 
   public Pneumatics() {
     // assignment
-    hpreach = new Solenoid(RobotMap.hpReach);
-    hpretract = new Solenoid(RobotMap.hpRetract);
-    hpUp = new Solenoid(RobotMap.hpUp);
-    hpDown = new Solenoid(RobotMap.hpDown);
-    frontLift = new Solenoid(RobotMap.frontLift);
-    frontDrop = new Solenoid(RobotMap.frontDrop);
-    rearLift = new Solenoid(RobotMap.rearLift);
-    rearDrop = new Solenoid(RobotMap.rearDrop);
+    hpReach = new DoubleSolenoid(RobotMap.hpReach, RobotMap.hpRetract);
+    hpVert = new DoubleSolenoid(RobotMap.hpUp, RobotMap.hpDown);
+    front = new DoubleSolenoid(RobotMap.frontLift, RobotMap.frontDrop);
+    rear = new DoubleSolenoid(RobotMap.rearLift, RobotMap.rearDrop);
     // default
-    hpDown.set(RobotMap.defaultPneumaticsState);
-    hpUp.set(!RobotMap.defaultPneumaticsState);
-    frontLift.set(RobotMap.defaultPneumaticsState);
-    frontDrop.set(!RobotMap.defaultPneumaticsState);
-    rearLift.set(RobotMap.defaultPneumaticsState);
-    rearDrop.set(!RobotMap.defaultPneumaticsState);
-    hpreach.set(RobotMap.defaultPneumaticsState);
-    hpretract.set(!RobotMap.defaultPneumaticsState);
+    hpReach.set(Value.kForward);
+    hpVert.set(Value.kForward);
+    front.set(Value.kForward);
+    rear.set(Value.kReverse);
+  }
+
+  public void extendFront() {
+    front.set(Value.kForward);
+  }
+
+  public void retractFront() {
+    front.set(Value.kReverse);
+  }
+
+  public void extendBack() {
+    rear.set(Value.kForward);
+  }
+
+  public void retractBack() {
+    rear.set(Value.kReverse);
+  }
+
+  public void hpGoUp() {
+    hpVert.set(Value.kForward);
+  }
+
+  public void hpGoDown() {
+    hpVert.set(Value.kReverse);
+  }
+
+  public void hpGoOut() {
+    hpReach.set(Value.kForward);
+  }
+
+  public void hpGoIn() {
+    hpReach.set(Value.kReverse);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
-
-  public void setRear(boolean lift) {
-    if (rearDrop.get() != lift) {
-      rearLift.set(lift);
-      rearDrop.set(!lift);
-    }
-  }
-
-  public void setFront(boolean lift) {
-    if (frontDrop.get() != lift) {
-      frontLift.set(lift);
-      frontDrop.set(!lift);
-    }
-  }
-
-  public void setReachPiston(boolean extended) {
-    if (hpreach.get() != extended) {
-      hpreach.set(extended);
-      hpretract.set(!extended);
-    }
-  }
-
-  public void setLifter(boolean lifter) {
-    if (hpUp.get() != lifter) {
-      hpUp.set(lifter);
-      hpDown.set(!lifter);
-    }
-  }
-
 }
