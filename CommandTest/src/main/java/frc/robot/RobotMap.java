@@ -44,7 +44,4 @@ public class RobotMap {
   public static final int rightStick = 0;
   public static final int leftStick = 1;
   public static final double joy_deadzone = 0.05;
-
-  // what state they should be in when the robot starts (it's here so it can be easily changed if needed to be reversed)
-  public static final boolean defaultPneumaticsState = true;
 }
