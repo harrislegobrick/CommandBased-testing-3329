@@ -28,29 +28,29 @@ public class PneumaticsCommand extends InstantCommand {
   protected void initialize() {
     switch(currentMode){
       case UP : 
-      Robot.pneumatics.setLifter(true);
+      Robot.pneumatics.hpGoUp();;;;
       break;
       case DOWN : 
-      Robot.pneumatics.setLifter(false);
+      Robot.pneumatics.hpGoDown();
       break;
       case IN : 
-      Robot.pneumatics.setReachPiston(true);
+      Robot.pneumatics.hpGoIn();;
       break;
       case OUT : 
-      Robot.pneumatics.setReachPiston(false);
+      Robot.pneumatics.hpGoOut();
       break;
       case FUP : 
-      Robot.pneumatics.setFront(true);
+      Robot.pneumatics.extendFront();
       break;
       case FDOWN : 
-      Robot.pneumatics.setFront(false);
+      Robot.pneumatics.retractFront();
       break;
       case BUP : 
-      Robot.pneumatics.setRear(true);
+      Robot.pneumatics.extendBack();
       break;
       case BDOWN :
-      Robot.pneumatics.setRear(false);
-      break; 
+      Robot.pneumatics.retractBack();
+      break;
     }
   }
 }
