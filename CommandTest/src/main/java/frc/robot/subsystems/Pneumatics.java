@@ -15,10 +15,15 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Pneumatics extends Subsystem {
+  private static Pneumatics instance;
 
-  private Solenoid hpreach, hpretract, hpUp, hpDown, frontLift, frontDrop, rearLift, rearDrop;
+  private static Solenoid hpreach, hpretract, hpUp, hpDown, frontLift, frontDrop, rearLift, rearDrop;
 
-  public Pneumatics() {
+  private Pneumatics() {
+    init();
+  }
+
+  private void init() {
     // assignment
     hpreach = new Solenoid(RobotMap.hpReach);
     hpretract = new Solenoid(RobotMap.hpRetract);
@@ -39,38 +44,43 @@ public class Pneumatics extends Subsystem {
     hpretract.set(!RobotMap.defaultPneumaticsState);
   }
 
+  public static Pneumatics getInstance() {
+    if (instance == null)
+      instance = new Pneumatics();
+    return instance;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setRear(boolean lift) {
+  public static void setRear(boolean lift) {
     if (rearDrop.get() != lift) {
       rearLift.set(lift);
       rearDrop.set(!lift);
     }
   }
 
-  public void setFront(boolean lift) {
+  public static void setFront(boolean lift) {
     if (frontDrop.get() != lift) {
       frontLift.set(lift);
       frontDrop.set(!lift);
     }
   }
 
-  public void setReachPiston(boolean extended) {
+  public static void setReachPiston(boolean extended) {
     if (hpreach.get() != extended) {
       hpreach.set(extended);
       hpretract.set(!extended);
     }
   }
 
-  public void setLifter(boolean lifter) {
+  public static void setLifter(boolean lifter) {
     if (hpUp.get() != lifter) {
       hpUp.set(lifter);
       hpDown.set(!lifter);
     }
   }
-
 }

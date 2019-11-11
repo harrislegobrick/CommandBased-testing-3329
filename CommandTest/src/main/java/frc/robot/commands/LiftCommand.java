@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Lift;
 
 public class LiftCommand extends Command {
 
@@ -19,7 +19,7 @@ public class LiftCommand extends Command {
   private Mode currentMode;
 
   public LiftCommand(Mode mode) {
-    requires(Robot.lift);
+    requires(Lift.getInstance());
     this.currentMode = mode;
   }
 
@@ -33,10 +33,10 @@ public class LiftCommand extends Command {
   protected void execute() {
     switch (currentMode) {
     case UP:
-      Robot.lift.up();
+      Lift.up();
       break;
     case DOWN:
-      Robot.lift.down();
+      Lift.down();
       break;
     }
   }
@@ -50,7 +50,7 @@ public class LiftCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.stop();
+    Lift.stop();
   }
 
   // Called when another command which requires one or more of the same

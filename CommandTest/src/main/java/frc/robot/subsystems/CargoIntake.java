@@ -15,21 +15,32 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class CargoIntake extends Subsystem {
-  private Spark grabbers;
+  private static CargoIntake instance;
+  private static Spark grabbers;
 
-  public CargoIntake() {
+  private CargoIntake() {
+    init();
+  }
+
+  private void init() {
     grabbers = new Spark(RobotMap.grabberMotor);
   }
 
-  public void shoot() {
+  public static CargoIntake getInstance() {
+    if (instance == null)
+      instance = new CargoIntake();
+    return instance;
+  }
+
+  public static void shoot() {
     grabbers.set(1.0);
   }
 
-  public void grab() {
+  public static void grab() {
     grabbers.set(-0.4);
   }
 
-  public void stop() {
+  public static void stop() {
     grabbers.set(0.0);
   }
 

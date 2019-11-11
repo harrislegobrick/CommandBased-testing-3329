@@ -8,21 +8,20 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Limelight;
 
 public class LimelightTrackToTarget extends Command {
 
   public LimelightTrackToTarget() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.drivetrain);
-    requires(Robot.limelight);
+    requires(Drivetrain.getInstance());
+    requires(Limelight.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.limelight.setTracking();
+    Limelight.setTracking();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -30,12 +29,12 @@ public class LimelightTrackToTarget extends Command {
   protected void execute() {
     double llspeedL, llspeedR;
     llspeedL = llspeedR = 0.8;
-    double errorValue = Robot.limelight.getX() / 30;
+    double errorValue = Limelight.getX() / 30;
 
-    if (Robot.limelight.getAvalibility() && Robot.limelight.getY() < 21.5) {
+    if (Limelight.getAvalibility() && Limelight.getY() < 21.5) {
       llspeedL *= errorValue + llspeedL;
       llspeedR *= -errorValue + llspeedR;
-      Robot.drivetrain.setRaw(llspeedL, llspeedR);
+      Drivetrain.setRaw(llspeedL, llspeedR);
     }
   }
 
@@ -48,8 +47,8 @@ public class LimelightTrackToTarget extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.setRaw(0, 0);
-    Robot.limelight.setDriving();
+    Drivetrain.setRaw(0, 0);
+    Limelight.setDriving();
   }
 
   // Called when another command which requires one or more of the same

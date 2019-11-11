@@ -8,15 +8,12 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
-import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
 
 /**
  * Add your docs here.
  */
 public class DriveStraight extends TimedCommand {
-  /**
-   * Add your docs here.
-   */
   double lSpeed, rSpeed, error, speed;
   double deltaError = 0;
   double previousError = 0;
@@ -25,28 +22,27 @@ public class DriveStraight extends TimedCommand {
 
   public DriveStraight(double timeout, double speed) {
     super(timeout);
-    requires(Robot.drivetrain);
+    requires(Drivetrain.getInstance());
     this.speed = speed;
-
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.resetGyro();
+    Drivetrain.resetGyro();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    error = Robot.drivetrain.getGyro();
+    error = Drivetrain.getGyro();
 
     if (error != previousError) {
       deltaError = error - previousError;
     }
     lSpeed = (speed > 0 ? 1 : -1) * (-error * kP * speed) + (-deltaError * kI * speed) + speed;
     rSpeed = (speed > 0 ? 1 : -1) * (error * kP * speed) + (deltaError * kI * speed) + speed;
-    Robot.drivetrain.setRaw(lSpeed, rSpeed);
+    Drivetrain.setRaw(lSpeed, rSpeed);
 
     previousError = error;
   }
@@ -54,7 +50,7 @@ public class DriveStraight extends TimedCommand {
   // Called once after timeout
   @Override
   protected void end() {
-    Robot.drivetrain.stop();
+    Drivetrain.stop();
   }
 
   // Called when another command which requires one or more of the same

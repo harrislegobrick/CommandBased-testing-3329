@@ -15,47 +15,58 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class Limelight extends Subsystem {
+  private static Limelight instance;
   private static NetworkTable table;
 
-  public Limelight() {
+  private Limelight() {
+    init();
+  }
+
+  private void init() {
     table = NetworkTableInstance.getDefault().getTable("limelight");
 
     setDriving();
   }
 
-  public void setTracking() {
+  public static Limelight getInstance() {
+    if (instance == null)
+      instance = new Limelight();
+    return instance;
+  }
+
+  public static void setTracking() {
     table.getEntry("ledMode").setNumber(3.0);
     table.getEntry("camMode").setNumber(0.0);
   }
 
-  public void setDriving() {
+  public static void setDriving() {
     table.getEntry("ledMode").setNumber(1.0);
     table.getEntry("camMode").setNumber(1.0);
   }
 
-  public double getX() {
+  public static double getX() {
     return table.getEntry("tx").getDouble(0.0);
   }
 
-  public double getY() {
+  public static double getY() {
     return table.getEntry("ty").getDouble(0.0);
   }
 
-  public double getSkew() {
+  public static double getSkew() {
     return table.getEntry("ts").getDouble(0.0);
   }
 
-  public double getArea() {
+  public static double getArea() {
     return table.getEntry("ta").getDouble(0.0);
   }
 
-  public double[] getPos() {
+  public static double[] getPos() {
     double[] pos = new double[6];
     pos = table.getEntry("camtran").getDoubleArray(pos);
     return pos;
   }
 
-  public boolean getAvalibility() {
+  public static boolean getAvalibility() {
     return table.getEntry("tv").getDouble(0.0) == 1;
   }
 

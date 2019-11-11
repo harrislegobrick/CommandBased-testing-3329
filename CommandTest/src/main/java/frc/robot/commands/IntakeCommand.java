@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.CargoIntake;
 
 public class IntakeCommand extends Command {
 
@@ -19,7 +19,7 @@ public class IntakeCommand extends Command {
   private Mode currentMode;
 
   public IntakeCommand(Mode mode) {
-    requires(Robot.cargoIntake);
+    requires(CargoIntake.getInstance());
     this.currentMode = mode;
   }
 
@@ -33,10 +33,10 @@ public class IntakeCommand extends Command {
   protected void execute() {
     switch (currentMode) {
     case IN:
-      Robot.cargoIntake.grab();
+      CargoIntake.grab();
       break;
     case OUT:
-      Robot.cargoIntake.shoot();
+      CargoIntake.shoot();
       break;
     }
   }
@@ -50,7 +50,7 @@ public class IntakeCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.cargoIntake.stop();
+    CargoIntake.stop();
   }
 
   // Called when another command which requires one or more of the same

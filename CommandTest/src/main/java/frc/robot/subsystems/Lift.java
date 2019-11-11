@@ -15,21 +15,32 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Lift extends Subsystem {
-  private Talon lift;
+  private static Lift instance;
+  private static Talon lift;
 
-  public Lift() {
+  private Lift() {
+    init();
+  }
+
+  private void init() {
     lift = new Talon(RobotMap.liftMotor);
   }
 
-  public void up() {
+  public static Lift getInstance() {
+    if (instance == null)
+      instance = new Lift();
+    return instance;
+  }
+
+  public static void up() {
     lift.set(0.8);
   }
 
-  public void down() {
+  public static void down() {
     lift.set(-0.2);
   }
 
-  public void stop() {
+  public static void stop() {
     lift.set(0.0);
   }
 

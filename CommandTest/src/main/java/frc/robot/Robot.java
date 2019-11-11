@@ -25,11 +25,6 @@ import frc.robot.commands.autoncommands.*;
 public class Robot extends TimedRobot {
   // public static ExampleSubsystem subsystem = new ExampleSubsystem();
   public static OI oi;
-  public static Drivetrain drivetrain;
-  public static Lift lift;
-  public static CargoIntake cargoIntake;
-  public static Limelight limelight;
-  public static Pneumatics pneumatics;
 
   Command autonomousCommand;
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,12 +35,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    lift = new Lift();
-    cargoIntake = new CargoIntake();
-    oi = new OI();
-    drivetrain = new Drivetrain();
-    limelight = new Limelight();
-    pneumatics = new Pneumatics();
 
     OI.init();
 
@@ -66,10 +55,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("accel Y", Robot.drivetrain.getY());
-    SmartDashboard.putNumber("accel X", Robot.drivetrain.getX());
-    SmartDashboard.putNumber("accel Z", Robot.drivetrain.getZ());
-    SmartDashboard.putNumber("gyro", Robot.drivetrain.getGyro());
+    SmartDashboard.putNumber("accel Y", Drivetrain.getY());
+    SmartDashboard.putNumber("accel X", Drivetrain.getX());
+    SmartDashboard.putNumber("accel Z", Drivetrain.getZ());
+    SmartDashboard.putNumber("gyro", Drivetrain.getGyro());
 
     // remove for limelight testing
     // SmartDashboard.putNumber("limelight skew", Robot.limelight.getSkew());

@@ -11,12 +11,11 @@ import static frc.robot.OI.leftStick;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
 
 public class TankDrive extends Command {
   public TankDrive() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.drivetrain);
+    requires(Drivetrain.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -28,7 +27,7 @@ public class TankDrive extends Command {
   @Override
   protected void execute() {
     double throttle = (1.0 - leftStick.getThrottle()) / -2.0;
-    Robot.drivetrain.setRaw(Robot.oi.getLeftJoyY() * throttle, Robot.oi.getRightJoyY() * throttle);
+    Drivetrain.setRaw(Robot.oi.getLeftJoyY() * throttle, Robot.oi.getRightJoyY() * throttle);
   }
 
   // Make this return true when this Command no longer needs to run execute()

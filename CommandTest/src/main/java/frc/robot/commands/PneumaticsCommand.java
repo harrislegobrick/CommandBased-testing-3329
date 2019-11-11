@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
+import frc.robot.subsystems.Pneumatics;
 
 public class PneumaticsCommand extends InstantCommand {
   public enum Mode {
@@ -19,38 +19,38 @@ public class PneumaticsCommand extends InstantCommand {
 
   public PneumaticsCommand(Mode currentMode) {
     super();
-    requires(Robot.pneumatics);
+    requires(Pneumatics.getInstance());
     this.currentMode = currentMode;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    switch(currentMode){
-      case UP : 
-      Robot.pneumatics.setLifter(true);
+    switch (currentMode) {
+    case UP:
+      Pneumatics.setLifter(true);
       break;
-      case DOWN : 
-      Robot.pneumatics.setLifter(false);
+    case DOWN:
+      Pneumatics.setLifter(false);
       break;
-      case IN : 
-      Robot.pneumatics.setReachPiston(true);
+    case IN:
+      Pneumatics.setReachPiston(true);
       break;
-      case OUT : 
-      Robot.pneumatics.setReachPiston(false);
+    case OUT:
+      Pneumatics.setReachPiston(false);
       break;
-      case FUP : 
-      Robot.pneumatics.setFront(true);
+    case FUP:
+      Pneumatics.setFront(true);
       break;
-      case FDOWN : 
-      Robot.pneumatics.setFront(false);
+    case FDOWN:
+      Pneumatics.setFront(false);
       break;
-      case BUP : 
-      Robot.pneumatics.setRear(true);
+    case BUP:
+      Pneumatics.setRear(true);
       break;
-      case BDOWN :
-      Robot.pneumatics.setRear(false);
-      break; 
+    case BDOWN:
+      Pneumatics.setRear(false);
+      break;
     }
   }
 }

@@ -8,7 +8,7 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
 
 public class CancelMovement extends Command {
 
@@ -16,7 +16,7 @@ public class CancelMovement extends Command {
   private double speed = 0.3;
 
   public CancelMovement() {
-    requires(Robot.drivetrain);
+    requires(Drivetrain.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -27,24 +27,24 @@ public class CancelMovement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.drivetrain.getY() < 0) {
-      Robot.drivetrain.setRaw(-speed, -speed);
+    if (Drivetrain.getY() < 0) {
+      Drivetrain.setRaw(-speed, -speed);
     } else {
-      Robot.drivetrain.setRaw(speed, speed);
+      Drivetrain.setRaw(speed, speed);
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.drivetrain.getX()) < exactness && Math.abs(Robot.drivetrain.getY()) < exactness
-        && Math.abs(Robot.drivetrain.getZ()) < exactness;
+    return Math.abs(Drivetrain.getX()) < exactness && Math.abs(Drivetrain.getY()) < exactness
+        && Math.abs(Drivetrain.getZ()) < exactness;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.setRaw(0.0, 0.0);
+    Drivetrain.stop();
   }
 
   // Called when another command which requires one or more of the same

@@ -8,7 +8,7 @@
 package frc.robot.commands.autoncommands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
 
 public class RotateBot extends Command {
 
@@ -23,7 +23,7 @@ public class RotateBot extends Command {
   private double exactness = 0.95;
 
   public RotateBot(double degrees, Direction direction) {
-    requires(Robot.drivetrain);
+    requires(Drivetrain.getInstance());
     this.degrees = degrees;
     this.direction = direction;
   }
@@ -31,7 +31,7 @@ public class RotateBot extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.resetGyro();
+    Drivetrain.resetGyro();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -39,13 +39,13 @@ public class RotateBot extends Command {
   protected void execute() {
     switch (direction) {
     case RIGHT:
-      newspeed = Math.max(Math.abs((speed * (degrees - Robot.drivetrain.getGyro()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(newspeed, -newspeed);
+      newspeed = Math.max(Math.abs((speed * (degrees - Drivetrain.getGyro()) / degrees)), minspeed);
+      Drivetrain.setRaw(newspeed, -newspeed);
       break;
 
     case LEFT:
-      newspeed = Math.max(Math.abs((speed * (-degrees - Robot.drivetrain.getGyro()) / degrees)), minspeed);
-      Robot.drivetrain.setRaw(-newspeed, newspeed);
+      newspeed = Math.max(Math.abs((speed * (-degrees - Drivetrain.getGyro()) / degrees)), minspeed);
+      Drivetrain.setRaw(-newspeed, newspeed);
       break;
     }
   }
@@ -53,13 +53,13 @@ public class RotateBot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.drivetrain.getGyro()) >= degrees * exactness;
+    return Math.abs(Drivetrain.getGyro()) >= degrees * exactness;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.stop();
+    Drivetrain.stop();
   }
 
   // Called when another command which requires one or more of the same

@@ -22,12 +22,17 @@ import frc.robot.commands.TankDrive;
 public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private Talon rightMotor;
-  private Spark leftMotor;
-  private ADXRS450_Gyro gyro;
-  private BuiltInAccelerometer accel;
+  private static Drivetrain instance;
+  private static Talon rightMotor;
+  private static Spark leftMotor;
+  private static ADXRS450_Gyro gyro;
+  private static BuiltInAccelerometer accel;
 
-  public Drivetrain() {
+  private Drivetrain() {
+    init();
+  }
+
+  private void init() {
     leftMotor = new Spark(RobotMap.leftMotor);
     rightMotor = new Talon(RobotMap.rightMotor);
 
@@ -37,33 +42,39 @@ public class Drivetrain extends Subsystem {
     gyro.calibrate();
   }
 
-  public void resetGyro() {
+  public static Drivetrain getInstance() {
+    if (instance == null)
+      instance = new Drivetrain();
+    return instance;
+  }
+
+  public static void resetGyro() {
     gyro.reset();
   }
 
-  public double getGyro() {
+  public static double getGyro() {
     return gyro.getAngle();
   }
 
-  public void setRaw(double leftvalue, double rightvalue) {
+  public static void setRaw(double leftvalue, double rightvalue) {
     leftMotor.set(leftvalue);
     rightMotor.set(-rightvalue);
   }
 
-  public void stop(){
+  public static void stop() {
     leftMotor.set(0.0);
     rightMotor.set(0.0);
   }
 
-  public double getX() {
+  public static double getX() {
     return accel.getX();
   }
 
-  public double getY() {
+  public static double getY() {
     return accel.getY();
   }
 
-  public double getZ() {
+  public static double getZ() {
     return accel.getZ();
   }
 
@@ -72,5 +83,4 @@ public class Drivetrain extends Subsystem {
     // Set the default command for a subsystem here.
     setDefaultCommand(new TankDrive());
   }
-
 }

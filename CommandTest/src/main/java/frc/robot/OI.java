@@ -67,7 +67,8 @@ public class OI {
 
   }
 
-  // Removes the deadzone from the controllers so it doesn't hurt the motors by switching values rapidly 
+  // Removes the deadzone from the controllers so it doesn't hurt the motors by
+  // switching values rapidly
   public double getLeftJoyY() {
     double raw = leftStick.getY();
     return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
@@ -77,5 +78,4 @@ public class OI {
     double raw = rightStick.getY();
     return Math.abs(raw) < RobotMap.joy_deadzone ? 0.0 : raw;
   }
-
 }
